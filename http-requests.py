@@ -162,3 +162,28 @@ iet_url += '&fulltextcheck=option1checked&option1=all&operator3=AND&value3=&opti
 
 print("IET DL url: " + iet_url)
 os.system('start chrome ' + iet_url)
+
+
+############################################### DBPL
+
+dblp_url = '"https://dblp.org/search?q='
+
+add_term = ''
+for i, and_term in enumerate(search_terms):
+    if i!=0:
+        add_term += '+%20'
+    add_term += '%28'
+    for j, or_term in enumerate(and_term):
+        if j!=0:
+            add_term += '%7C'
+        add_term += or_term.replace(' ', '+%20')
+
+    add_term += '%29'
+    dblp_url += add_term
+    add_term = ''
+
+
+dblp_url += '"'
+
+print("DBPL url: " + dblp_url)
+os.system('start chrome ' + dblp_url)
