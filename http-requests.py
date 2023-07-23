@@ -108,3 +108,30 @@ scopus_url += '%29+AND+PUBYEAR+%26gt%3B+' + years[0] + '+AND+PUBYEAR+%26lt%3B+' 
 
 print("Springer url: " + scopus_url)
 os.system('start chrome ' + scopus_url)
+
+
+
+
+############################################### WILEY
+
+wiley_url = '"https://onlinelibrary.wiley.com/action/doSearch?field1=AllField&text1='
+
+add_term = '%28'
+for i, and_term in enumerate(search_terms):
+    if i!=0:
+        add_term += '+AND+'
+    add_term += '%28'
+    for j, or_term in enumerate(and_term):
+        if j!=0:
+            add_term += '+OR+'
+        add_term += or_term
+
+    add_term += '%29'
+    wiley_url += add_term
+    add_term = ''
+
+
+wiley_url += '%29&field2=AllField&text2=&field3=AllField&text3=&Ppub=&AfterMonth=1&AfterYear=' + years[0] + '&BeforeMonth=12&BeforeYear=' + years[1] + '"'
+
+print("Wiley url: " + wiley_url)
+os.system('start chrome ' + wiley_url)
