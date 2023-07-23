@@ -83,3 +83,28 @@ springer_url += '&showAll=true"'
 
 print("Springer url: " + springer_url)
 os.system('start chrome ' + springer_url)
+
+
+############################################### SCOPUS
+
+scopus_url = '"https://www.scopus.com/results/results.uri?sort=plf-f&src=s&s='
+
+add_term = '%28'
+for i, and_term in enumerate(search_terms):
+    if i!=0:
+        add_term += '+AND+'
+    add_term += '%28'
+    for j, or_term in enumerate(and_term):
+        if j!=0:
+            add_term += '+OR+'
+        add_term += 'ALL%28%22' + or_term + '%22%29'
+
+    add_term += '%29'
+    scopus_url += add_term
+    add_term = ''
+
+
+scopus_url += '%29+AND+PUBYEAR+%26gt%3B+' + years[0] + '+AND+PUBYEAR+%26lt%3B+' + str(int(years[1])+1) + '&origin=searchadvanced"'
+
+print("Springer url: " + scopus_url)
+os.system('start chrome ' + scopus_url)
