@@ -1,4 +1,7 @@
 import os
+import urllib.parse
+
+start_chrome = False
 
 ############################################### INPUT
 years = ['2000', '2023']
@@ -37,7 +40,7 @@ for i, and_term in enumerate(search_terms):
     for j, or_term in enumerate(and_term):
         if j != 0:
             add_term += '%20OR%20'
-        add_term += '%22All%20Metadata%22:' + or_term.replace(' ', '%20')
+        add_term += '%22All%20Metadata%22:' + urllib.parse.quote(or_term)
 
     add_term += ')'
     ieee_url += add_term
@@ -48,10 +51,11 @@ ieee_url += '))&highlight=true&returnFacets=ALL&returnType=SEARCH&matchPubs=true
          'refinements=ContentType:Conferences&refinements=ContentType:Journals&refinements=ContentType:Standards"'
 
 print("IEEE url: " + ieee_url)
-os.system('start chrome ' + ieee_url)
+print("\n"*2)
+if start_chrome: os.system('start chrome ' + ieee_url)
 
 ############################################### ACM DL
-
+# TODO: check if the search terms could be 'better' :D
 acm_dl_url = '"https://dl.acm.org/action/doSearch?fillQuickSearch=false&target=advanced&expand=dl&field1=AllField&text1='
 
 add_term = ''
@@ -62,7 +66,8 @@ for i, and_term in enumerate(search_terms):
     for j, or_term in enumerate(and_term):
         if j != 0:
             add_term += '+OR+'
-        add_term += or_term.replace(' ', '+')
+        #add_term += urllib.parse.quote(or_term.replace(' ', '+'))
+        add_term += urllib.parse.quote(or_term)
 
     add_term += '%29'
     acm_dl_url += add_term
@@ -71,10 +76,12 @@ for i, and_term in enumerate(search_terms):
 acm_dl_url += '&AfterMonth=1&AfterYear=' + years[0] + '&BeforeMonth=12&BeforeYear=' + years[1] + '"'
 
 print("ACM DL url: " + acm_dl_url)
-os.system('start chrome ' + acm_dl_url)
+print("\n"*2)
+if start_chrome: os.system('start chrome ' + acm_dl_url)
 
 ############################################### SPRINGER
-
+# https://link.springer.com/search?new-search=true&query=%28%22Collaborative%2Bdesign%22+OR+%22Participatory%2Bdesign%22+OR+%22Stakeholder%2Bengagement%22+OR+%22Stakeholder%2Binvolvement%22+OR+%22Stakeholder%2Bmanagement%22%29+AND+%28%22AI%22+OR+%22AIOps%22+OR+%22Artificial%2BIntelligence%22+OR+%22DevOps%22+OR+%22Explainable%2BAI%22+OR+%22LLMOPs%22+OR+%22Machine%2BLearning%22+OR+%22ML%22+OR+%22MLOps%22%29&sortBy=relevance&content-type=ConferencePaper&content-type=Article&date=custom&dateFrom=2000&dateTo=2023&facet-discipline=%22Computer+Science%22
+# TODO: update this to have less results again :D
 springer_url = '"https://link.springer.com/search?date-facet-mode=between&facet-start-year=' + years[
     0] + '&facet-end-year=' + years[1] + '&query='
 
@@ -86,7 +93,7 @@ for i, and_term in enumerate(search_terms):
     for j, or_term in enumerate(and_term):
         if j != 0:
             add_term += '+OR+'
-        add_term += or_term.replace(' ', '+')
+        add_term += urllib.parse.quote(or_term)
 
     add_term += '%29'
     springer_url += add_term
@@ -95,7 +102,8 @@ for i, and_term in enumerate(search_terms):
 springer_url += '&showAll=true"'
 
 print("Springer url: " + springer_url)
-os.system('start chrome ' + springer_url)
+print("\n"*2)
+if start_chrome: os.system('start chrome ' + springer_url)
 
 ############################################### SCOPUS
 
@@ -109,7 +117,7 @@ for i, and_term in enumerate(search_terms):
     for j, or_term in enumerate(and_term):
         if j != 0:
             add_term += '+OR+'
-        add_term += 'ALL%28%22' + or_term + '%22%29'
+        add_term += 'ALL%28%22' + urllib.parse.quote(or_term) + '%22%29'
 
     add_term += '%29'
     scopus_url += add_term
@@ -118,11 +126,12 @@ for i, and_term in enumerate(search_terms):
 scopus_url += '%29+AND+PUBYEAR+%26gt%3B+' + years[0] + '+AND+PUBYEAR+%26lt%3B+' + str(
     int(years[1]) + 1) + '&origin=searchadvanced"'
 
-print("Springer url: " + scopus_url)
-os.system('start chrome ' + scopus_url)
+print("Scopus url: " + scopus_url)
+print("\n"*2)
+if start_chrome: os.system('start chrome ' + scopus_url)
 
 ############################################### WILEY
-
+x = ''' # no access to wiley?
 wiley_url = '"https://onlinelibrary.wiley.com/action/doSearch?field1=AllField&text1='
 
 add_term = '%28'
@@ -133,7 +142,7 @@ for i, and_term in enumerate(search_terms):
     for j, or_term in enumerate(and_term):
         if j != 0:
             add_term += '+OR+'
-        add_term += or_term
+        add_term += urllib.parse.quote(or_term)
 
     add_term += '%29'
     wiley_url += add_term
@@ -143,7 +152,9 @@ wiley_url += '%29&field2=AllField&text2=&field3=AllField&text3=&Ppub=&AfterMonth
     0] + '&BeforeMonth=12&BeforeYear=' + years[1] + '"'
 
 print("Wiley url: " + wiley_url)
-os.system('start chrome ' + wiley_url)
+print("\n"*2)
+if start_chrome: os.system('start chrome ' + wiley_url)
+'''
 
 ############################################### IET DL
 
@@ -157,7 +168,7 @@ for i, and_term in enumerate(search_terms):
     for j, or_term in enumerate(and_term):
         if j != 0:
             add_term += '+OR+'
-        add_term += or_term.replace(' ', '+')
+        add_term += urllib.parse.quote(or_term.replace(' ', '+'))
 
     add_term += '%29'
     iet_url += add_term
@@ -170,7 +181,8 @@ iet_url += '&fulltextcheck=option1checked&option1=all&operator3=AND&value3=&opti
            years[1] + '&sortField=default&sortDescending=true&pageSize=10"'
 
 print("IET DL url: " + iet_url)
-os.system('start chrome ' + iet_url)
+print("\n"*2)
+if start_chrome: os.system('start chrome ' + iet_url)
 
 ############################################### DBPL
 
@@ -184,7 +196,7 @@ for i, and_term in enumerate(search_terms):
     for j, or_term in enumerate(and_term):
         if j != 0:
             add_term += '%7C'
-        add_term += or_term.replace(' ', '+%20')
+        add_term += urllib.parse.quote(or_term)
 
     add_term += '%29'
     dblp_url += add_term
@@ -192,5 +204,6 @@ for i, and_term in enumerate(search_terms):
 
 dblp_url += '"'
 
-print("DBPL url: " + dblp_url)
-os.system('start chrome ' + dblp_url)
+print("DBLP url: " + dblp_url)
+print("\n"*2)
+if start_chrome: os.system('start chrome ' + dblp_url)
