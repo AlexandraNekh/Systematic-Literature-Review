@@ -2,12 +2,28 @@ import os
 
 ############################################### INPUT
 years = ['2000', '2023']
-search_terms = [['Stakeholder involvement', 'Participatory design', 'Stakeholder engagement', 'User-centered design',
-                 'HCI', 'Human Computer Interaction', 'Collaborative design', 'Explainable AI', 'Data Transparency',
-                 'Data Fairness', 'Explainable Data', 'Data Accountability', 'Agile software development',
-                 'Project management'],
-                ['MLOps', 'DevOps', 'AIOps'],
-                ['Cloud', 'Machine Learning', 'Artificial Intelligence', 'Cloud-based', 'AI-based', 'ML-based']]
+search_terms = [
+    # 'Data Transparency', 'Data Fairness', 'Explainable Data', 'Data Accountability', 
+    # [ 'HCI', 'Human Computer Interaction', 'Agile software development', 'Project management'], # AND
+    [ 
+        '"Collaborative design"',
+        '"Participatory design"',  
+        '"Stakeholder engagement"', 
+        '"Stakeholder involvement"', 
+        '"Stakeholder management"',
+    ], # AND
+    [ 
+        '"AI"', 
+        '"AIOps"',
+        '"Artificial Intelligence"', 
+        '"DevOps"', 
+        '"Explainable AI"',
+        '"LLMOPs"',
+        '"Machine Learning"', 
+        '"ML"', 
+        '"MLOps"',
+    ]
+]
 
 ############################################### IEEE
 
