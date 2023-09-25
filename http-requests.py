@@ -1,7 +1,7 @@
 import os
 import urllib.parse
 
-start_chrome = False
+start_chrome = True
 start_edge = True
 
 ############################################### INPUT
@@ -111,6 +111,10 @@ if start_edge: os.system('start msedge ' + springer_url)
 
 ############################################### SCOPUS
 
+print("\n"*2)
+print("SCOPUS needs VPN!!!")
+print("\n"*2)
+
 scopus_url = '"https://www.scopus.com/results/results.uri?sort=plf-f&src=s&s='
 
 add_term = '%28'
@@ -121,7 +125,7 @@ for i, and_term in enumerate(search_terms):
     for j, or_term in enumerate(and_term):
         if j != 0:
             add_term += '+OR+'
-        add_term += 'ALL%28%22' + urllib.parse.quote(or_term) + '%22%29'
+        add_term += 'ALL%28%22' + or_term.replace('"', '') + '%22%29'
 
     add_term += '%29'
     scopus_url += add_term
