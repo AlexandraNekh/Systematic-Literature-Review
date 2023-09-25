@@ -2,6 +2,7 @@ import os
 import urllib.parse
 
 start_chrome = False
+start_edge = True
 
 ############################################### INPUT
 years = ['2000', '2023']
@@ -53,6 +54,7 @@ ieee_url += '))&highlight=true&returnFacets=ALL&returnType=SEARCH&matchPubs=true
 print("IEEE url: " + ieee_url)
 print("\n"*2)
 if start_chrome: os.system('start chrome ' + ieee_url)
+if start_edge: os.system('start msedge ' + ieee_url)
 
 ############################################### ACM DL
 # TODO: check if the search terms could be 'better' :D
@@ -78,6 +80,7 @@ acm_dl_url += '&AfterMonth=1&AfterYear=' + years[0] + '&BeforeMonth=12&BeforeYea
 print("ACM DL url: " + acm_dl_url)
 print("\n"*2)
 if start_chrome: os.system('start chrome ' + acm_dl_url)
+if start_edge: os.system('start msedge ' + acm_dl_url)
 
 ############################################### SPRINGER
 # https://link.springer.com/search?new-search=true&query=%28%22Collaborative%2Bdesign%22+OR+%22Participatory%2Bdesign%22+OR+%22Stakeholder%2Bengagement%22+OR+%22Stakeholder%2Binvolvement%22+OR+%22Stakeholder%2Bmanagement%22%29+AND+%28%22AI%22+OR+%22AIOps%22+OR+%22Artificial%2BIntelligence%22+OR+%22DevOps%22+OR+%22Explainable%2BAI%22+OR+%22LLMOPs%22+OR+%22Machine%2BLearning%22+OR+%22ML%22+OR+%22MLOps%22%29&sortBy=relevance&content-type=ConferencePaper&content-type=Article&date=custom&dateFrom=2000&dateTo=2023&facet-discipline=%22Computer+Science%22
@@ -104,6 +107,7 @@ springer_url += '&showAll=true"'
 print("Springer url: " + springer_url)
 print("\n"*2)
 if start_chrome: os.system('start chrome ' + springer_url)
+if start_edge: os.system('start msedge ' + springer_url)
 
 ############################################### SCOPUS
 
@@ -129,6 +133,7 @@ scopus_url += '%29+AND+PUBYEAR+%26gt%3B+' + years[0] + '+AND+PUBYEAR+%26lt%3B+' 
 print("Scopus url: " + scopus_url)
 print("\n"*2)
 if start_chrome: os.system('start chrome ' + scopus_url)
+if start_edge: os.system('start msedge ' + scopus_url)
 
 ############################################### WILEY
 x = ''' # no access to wiley?
@@ -154,6 +159,7 @@ wiley_url += '%29&field2=AllField&text2=&field3=AllField&text3=&Ppub=&AfterMonth
 print("Wiley url: " + wiley_url)
 print("\n"*2)
 if start_chrome: os.system('start chrome ' + wiley_url)
+if start_edge: os.system('start msedge ' + wiley_url)
 '''
 
 ############################################### IET DL
@@ -183,6 +189,7 @@ iet_url += '&fulltextcheck=option1checked&option1=all&operator3=AND&value3=&opti
 print("IET DL url: " + iet_url)
 print("\n"*2)
 if start_chrome: os.system('start chrome ' + iet_url)
+if start_edge: os.system('start msedge ' + iet_url)
 
 ############################################### DBPL
 
@@ -207,3 +214,4 @@ dblp_url += '"'
 print("DBLP url: " + dblp_url)
 print("\n"*2)
 if start_chrome: os.system('start chrome ' + dblp_url)
+if start_edge: os.system('start msedge ' + dblp_url)
