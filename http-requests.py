@@ -1,11 +1,11 @@
 import os
 import urllib.parse
 
-start_chrome = True
+start_chrome = False
 start_edge = True
 
 ############################################### INPUT
-years = ['2000', '2023']
+years = ['2000', '2024']
 search_terms = [
     # 'Data Transparency', 'Data Fairness', 'Explainable Data', 'Data Accountability', 
     # [ 'HCI', 'Human Computer Interaction', 'Agile software development', 'Project management'], # AND
@@ -17,14 +17,14 @@ search_terms = [
         '"Stakeholder management"',
     ], # AND
     [ 
-        '"AI"', 
+        '" AI "',
         '"AIOps"',
         '"Artificial Intelligence"', 
         '"DevOps"', 
         '"Explainable AI"',
         '"LLMOPs"',
         '"Machine Learning"', 
-        '"ML"', 
+        '" ML "',
         '"MLOps"',
     ]
 ]
@@ -41,7 +41,9 @@ for i, and_term in enumerate(search_terms):
     for j, or_term in enumerate(and_term):
         if j != 0:
             add_term += '%20OR%20'
-        add_term += '%22All%20Metadata%22:' + urllib.parse.quote(or_term)
+        #add_term += '%22All%20Metadata%22:' + urllib.parse.quote(or_term)
+        add_term += '%22Full%20Text%20.AND.%20Metadata%22:' + urllib.parse.quote(or_term)
+
 
     add_term += ')'
     ieee_url += add_term
@@ -85,6 +87,8 @@ if start_edge: os.system('start msedge ' + acm_dl_url)
 ############################################### SPRINGER
 # https://link.springer.com/search?new-search=true&query=%28%22Collaborative%2Bdesign%22+OR+%22Participatory%2Bdesign%22+OR+%22Stakeholder%2Bengagement%22+OR+%22Stakeholder%2Binvolvement%22+OR+%22Stakeholder%2Bmanagement%22%29+AND+%28%22AI%22+OR+%22AIOps%22+OR+%22Artificial%2BIntelligence%22+OR+%22DevOps%22+OR+%22Explainable%2BAI%22+OR+%22LLMOPs%22+OR+%22Machine%2BLearning%22+OR+%22ML%22+OR+%22MLOps%22%29&sortBy=relevance&content-type=ConferencePaper&content-type=Article&date=custom&dateFrom=2000&dateTo=2023&facet-discipline=%22Computer+Science%22
 # TODO: update this to have less results again :D
+# use showAll=false to hide papers that we do not have access to
+
 springer_url = '"https://link.springer.com/search?date-facet-mode=between&facet-start-year=' + years[
     0] + '&facet-end-year=' + years[1] + '&query='
 
@@ -111,7 +115,6 @@ if start_edge: os.system('start msedge ' + springer_url)
 
 ############################################### SCOPUS
 
-print("\n"*2)
 print("SCOPUS needs VPN!!!")
 print("\n"*2)
 
@@ -125,7 +128,7 @@ for i, and_term in enumerate(search_terms):
     for j, or_term in enumerate(and_term):
         if j != 0:
             add_term += '+OR+'
-        add_term += 'ALL%28%22' + or_term.replace('"', '') + '%22%29'
+        add_term += 'TITLE-ABS-KEY%28%22' + or_term.replace('"', '') + '%22%29'
 
     add_term += '%29'
     scopus_url += add_term
@@ -178,7 +181,7 @@ for i, and_term in enumerate(search_terms):
     for j, or_term in enumerate(and_term):
         if j != 0:
             add_term += '+OR+'
-        add_term += urllib.parse.quote(or_term.replace(' ', '+'))
+        add_term += urllib.parse.quote(or_term)
 
     add_term += '%29'
     iet_url += add_term
@@ -207,7 +210,9 @@ for i, and_term in enumerate(search_terms):
     for j, or_term in enumerate(and_term):
         if j != 0:
             add_term += '%7C'
-        add_term += urllib.parse.quote(or_term)
+        add_term += '%28'
+        add_term += or_term.replace('"', '')
+        add_term += '%29'
 
     add_term += '%29'
     dblp_url += add_term
