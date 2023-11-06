@@ -12,7 +12,7 @@ use_IET_DL = False
 use_DBPL = False
 
 ############################################### INPUT
-years = ['2000', '2024']
+years = ['2005', '2024']
 search_terms = [
     # 'Data Transparency', 'Data Fairness', 'Explainable Data', 'Data Accountability', 
     # [ 'HCI', 'Human Computer Interaction', 'Agile software development', 'Project management'], # AND

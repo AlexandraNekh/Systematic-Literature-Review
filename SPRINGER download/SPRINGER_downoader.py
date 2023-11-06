@@ -21,10 +21,12 @@ for i in csvFiles:
             counter+=1
             try:
                 print(str(counter) +": "+ row[0] + ":   " + row[8] + ", PDF:  " + "https://link.springer.com/content/pdf/"  + row[5] + ".pdf?pdf=button")
+                """
                 filename = Path("pdfs/"+row[0]+".pdf")
                 url = "https://link.springer.com/content/pdf/"  + row[5] + ".pdf?pdf=button"
                 response = requests.get(url)
                 filename.write_bytes(response.content)
+                """
 
             except Exception as ex:
                 print(ex)
