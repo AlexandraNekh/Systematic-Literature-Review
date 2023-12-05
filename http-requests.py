@@ -24,14 +24,14 @@ search_terms = [
         '"Stakeholder management"',
     ], # AND
     [ 
-        '" AI "',
+        #'" AI "',
         '"AIOps"',
         '"Artificial Intelligence"', 
         '"DevOps"', 
         '"Explainable AI"',
         '"LLMOPs"',
         '"Machine Learning"', 
-        '" ML "',
+        #'" ML "',
         '"MLOps"',
     ]
 ]
