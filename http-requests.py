@@ -5,11 +5,13 @@ start_chrome = False
 start_edge = True
 use_IEEE = True
 use_ACM = True
-use_SPRINGER = True
-use_SCOPUS = False
-use_WILEY = False
-use_IET_DL = False
-use_DBPL = False
+use_SPRINGER = True # filter to only contain English articles
+use_SCOPUS = True
+use_WILEY = True
+use_IET_DL = True
+use_DBLP = False
+
+use_google_scholar = True
 
 ############################################### INPUT
 years = ['2005', '2024']
@@ -67,8 +69,33 @@ if use_IEEE:
     if start_chrome: os.system('start chrome ' + ieee_url)
     if start_edge: os.system('start msedge ' + ieee_url)
 
+############################################### Google Scholar
+
+if use_google_scholar:
+    
+    google_scholar_url = '"https://scholar.google.com/scholar?&hl=en&as_sdt=0%2C5&as_ylo=' + years[0] + '&as_yhi=' + years[1] + '&q='
+
+    add_term = ''
+    for i, and_term in enumerate(search_terms):
+        if i != 0:
+            add_term += '+AND+'
+        add_term += '%28'
+        for j, or_term in enumerate(and_term):
+            if j != 0:
+                add_term += '+OR+'
+            #add_term += urllib.parse.quote(or_term.replace(' ', '+'))
+            add_term += urllib.parse.quote(or_term)
+
+        add_term += '%29'
+        google_scholar_url += add_term
+        add_term = ''
+    
+    print("Google Scholar url: " + google_scholar_url)
+    print("\n"*2)
+    if start_chrome: os.system('start chrome ' + google_scholar_url)
+    if start_edge: os.system('start msedge ' + google_scholar_url)
+
 ############################################### ACM DL
-# TODO: check if the search terms could be 'better' :D
 
 if use_ACM:
 
@@ -222,7 +249,7 @@ if use_IET_DL:
 
 ############################################### DBPL
 
-if use_DBPL:
+if use_DBLP:
 
     dblp_url = '"https://dblp.org/search?q='
 
