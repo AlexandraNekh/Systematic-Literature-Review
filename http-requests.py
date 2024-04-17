@@ -3,6 +3,7 @@ import urllib.parse
 
 start_chrome = False
 start_edge = True
+
 use_IEEE = True
 use_ACM = True
 use_SPRINGER = True # filter to only contain English articles
@@ -14,27 +15,31 @@ use_DBLP = False
 use_google_scholar = True
 
 ############################################### INPUT
-years = ['2005', '2024']
+years = ['2014', '2024']
 search_terms = [
     # 'Data Transparency', 'Data Fairness', 'Explainable Data', 'Data Accountability', 
     # [ 'HCI', 'Human Computer Interaction', 'Agile software development', 'Project management'], # AND
     [ 
         '"Collaborative design"',
-        '"Participatory design"',  
+        '"Co-design"',
+        '"Design thinking"', 
+        '"End-user engagement"',
+        '"End-user involvement"',
+        '"End-user management"',
+        '"Human-centered"',
+        '"Human in the loop"',
+        '"Human-in-the-loop"',
+        '"Participatory design"', 
         '"Stakeholder engagement"', 
         '"Stakeholder involvement"', 
         '"Stakeholder management"',
+        '"User-centered"'
     ], # AND
     [ 
-        #'" AI "',
-        '"AIOps"',
-        '"Artificial Intelligence"', 
-        '"DevOps"', 
         '"Explainable AI"',
         '"LLMOPs"',
-        '"Machine Learning"', 
-        #'" ML "',
         '"MLOps"',
+        '"Responsible AI"'
     ]
 ]
 
@@ -124,14 +129,12 @@ if use_ACM:
     if start_edge: os.system('start msedge ' + acm_dl_url)
 
 ############################################### SPRINGER
-# https://link.springer.com/search?new-search=true&query=%28%22Collaborative%2Bdesign%22+OR+%22Participatory%2Bdesign%22+OR+%22Stakeholder%2Bengagement%22+OR+%22Stakeholder%2Binvolvement%22+OR+%22Stakeholder%2Bmanagement%22%29+AND+%28%22AI%22+OR+%22AIOps%22+OR+%22Artificial%2BIntelligence%22+OR+%22DevOps%22+OR+%22Explainable%2BAI%22+OR+%22LLMOPs%22+OR+%22Machine%2BLearning%22+OR+%22ML%22+OR+%22MLOps%22%29&sortBy=relevance&content-type=ConferencePaper&content-type=Article&date=custom&dateFrom=2000&dateTo=2023&facet-discipline=%22Computer+Science%22
-# TODO: update this to have less results again :D
-# use showAll=false to hide papers that we do not have access to
 
 if use_SPRINGER:
 
-    springer_url = '"https://link.springer.com/search?date-facet-mode=between&facet-start-year=' + years[
-        0] + '&facet-end-year=' + years[1] + '&query='
+    #springer_url = '"https://link.springer.com/search?date-facet-mode=between&facet-start-year=' + years[
+    #    0] + '&facet-end-year=' + years[1] + '&query='
+    springer_url = '"https://link.springer.com/search?new-search=true&content-type=book&content-type=chapter&content-type=conferencepaper&content-type=article&content-type=referencework&content-type=referenceworkentry&date=custom&dateFrom=' + years[0] + '&dateTo=' + years[1] + '&sortBy=relevance&language=En&query='
 
     add_term = ''
     for i, and_term in enumerate(search_terms):
